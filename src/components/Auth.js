@@ -17,10 +17,19 @@ const Auth = () => {
                 console.log('Réponse du serveur:', response);
                 navigate("/tasks");
             } else {
-                // ...
+                const userData = {
+                    Pseudo: form.pseudo,
+                    Mail: form.mail,
+                    Password: form.password
+                };
+                console.log('Tentative d\'enregistrement avec:', userData);
+                const response = await register(userData);
+                console.log('Réponse du serveur:', response);
+                // Une fois enregistré, connectez automatiquement l'utilisateur
+                await login({ Mail: form.mail, Password: form.password });
+                navigate("/tasks");
             }
         } catch (error) {
-            // Log plus détaillé de l'erreur
             console.error("Détails de l'erreur:", {
                 message: error.message,
                 status: error.response?.status,

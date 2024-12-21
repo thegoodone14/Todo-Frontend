@@ -32,3 +32,17 @@ export const login = async (credentials) => {
         throw error;
     }
 };
+
+export const register = async (userData) => {
+    try {
+        const response = await axios.post(`${API_URL}/auth/register`, {
+            Pseudo: userData.Pseudo,
+            Mail: userData.Mail,
+            Password: userData.Password
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Erreur lors de l\'enregistrement:', error);
+        throw error;
+    }
+};
