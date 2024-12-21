@@ -1,0 +1,152 @@
+/* App.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  color: #343a40;
+  text-align: center;
+  margin: 20px 0;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover {
+  background-color: #0056b3;
+  opacity: 0.8;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background-color: #f8f9fa; /* Couleur de fond */
+  border: 1px solid #ddd; /* Bordure subtile */
+  border-radius: 5px; /* Coins arrondis */
+  margin: 10px auto; /* Marge verticale et centrage horizontal */
+  padding: 10px 15px; /* Espacement interne */
+  max-width: 500px; /* Limite la largeur */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+  display: flex; /* Alignement horizontal */
+  justify-content: space-between; /* Espace entre texte et bouton */
+  align-items: center; /* Aligne verticalement */
+}
+
+.btn-done {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-done:hover {
+  background-color: darkred;
+}
+
+.btn-undone {
+  background-color: blue;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-undone:hover {
+  background-color: darkblue;
+}
+.button-container {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  margin-top: 20px;
+}
+.delete-task {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.delete-task:hover {
+  color: darkred;
+}
+.task-item {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 10px 15px;
+  max-width: 500px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between; /* Sépare les détails et les actions */
+  align-items: center; /* Aligne les éléments verticalement */
+}
+
+.task-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Occupe toute la largeur disponible */
+}
+
+.task-actions {
+  display: flex;
+  gap: 15px; /* Distance fixe entre les boutons */
+  margin-left: 20px; /* Espace fixe entre la description et les boutons */
+}
+
+.task-actions button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+
+
+.delete-task {
+  background: none;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.delete-task:hover {
+  color: darkred;
+}
