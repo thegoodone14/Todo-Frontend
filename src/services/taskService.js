@@ -31,7 +31,9 @@ export const getTasks = async (ID_List) => {
 
 export const addTask = async (taskData) => {
     try {
-        const response = await axios.post(`${API_URL}/tasks`, taskData);  // Enlever /list/
+        console.log("Envoi de la tâche:", taskData);
+        const response = await axios.post(`${API_URL}/list/tasks`, taskData);
+        console.log("Réponse de l'ajout:", response.data);
         return response.data;
     } catch (error) {
         console.error('Erreur lors de l\'ajout de la tâche:', error);
@@ -41,7 +43,7 @@ export const addTask = async (taskData) => {
 
 export const updateTaskStatus = async (ID_Task, isDone) => {
     try {
-        const response = await axios.put(`${API_URL}/tasks/${ID_Task}/status`, { isDone });  // Enlever /list/
+        const response = await axios.put(`${API_URL}/list/tasks/${ID_Task}/status`, { isDone });
         return response.data;
     } catch (error) {
         console.error('Erreur lors de la mise à jour du statut:', error);
@@ -51,7 +53,7 @@ export const updateTaskStatus = async (ID_Task, isDone) => {
 
 export const deleteTask = async (ID_Task) => {
     try {
-        const response = await axios.delete(`${API_URL}/tasks/${ID_Task}`);  // Enlever /list/
+        const response = await axios.delete(`${API_URL}/list/tasks/${ID_Task}`);
         return response.data;
     } catch (error) {
         console.error('Erreur lors de la suppression de la tâche:', error);
