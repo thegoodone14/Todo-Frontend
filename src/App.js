@@ -1,29 +1,40 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
 import Auth from './components/Auth';
-import ListContainer from './components/ListContainer';
-import { setAuthToken } from './services/api';
 import TaskPage from './components/TaskPage';
-import './App.css'
+import ThemeToggle from './components/ThemeToggle';
+import './App.css';
 
 function App() {
-    useEffect(() => {
-        // Récupérer le token du localStorage au démarrage
-        const token = localStorage.getItem('token');
-        if (token) {
-            setAuthToken(token); // Définir le token dans les en-têtes d'autorisation
-        }
-    }, []);
-    
-    return (
-        <Router>
+  return (
+    <ThemeProvider>
+      <Router>
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors">
+          <div className="container mx-auto px-4 py-8">
+            <div className="flex justify-end mb-4">
+              <ThemeToggle />
+            </div>
+            
             <Routes>
-                <Route path="/" element={<Auth />} />
-                <Route path="/tasks" element={<TaskPage />} />
-                <Route path="/lists" element={<ListContainer />} />
+              <Route path="/login" element={<Auth />} />
+              <Route
+                path="/tasks"
+                element={
+                  localStorage.getItem('token') ? (
+                    <TaskPage />
+                  ) : (
+                    <Navigate to="/login" replace />
+                  )
+                }
+              />
+              <Route path="/" element={<Navigate to="/tasks" replace />} />
             </Routes>
-        </Router>
-    );
+          </div>
+        </div>
+      </Router>
+    </ThemeProvider>
+  );
 }
 
 export default App;
