@@ -21,7 +21,7 @@ const TaskList = ({ listId }) => {
             if (filters.sortBy) queryParams.append('sortBy', filters.sortBy);
 
             const response = await axios.get(
-                `http://localhost:3001/api/list/${listId}/tasks?${queryParams.toString()}`,
+                `${process.env.REACT_APP_API_URL}/api/list/${listId}/tasks?${queryParams.toString()}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -44,7 +44,7 @@ const TaskList = ({ listId }) => {
         try {
             const token = localStorage.getItem('token');
             await axios.put(
-                `http://localhost:3001/api/list/tasks/${taskId}/status`,
+                `${process.env.REACT_APP_API_URL}/api/list/tasks/${taskId}/status`,
                 { isDone: !currentStatus },
                 {
                     headers: {
@@ -62,7 +62,7 @@ const TaskList = ({ listId }) => {
         try {
             const token = localStorage.getItem('token');
             await axios.put(
-                `http://localhost:3001/api/list/tasks/${taskId}/priority`,
+                `${process.env.REACT_APP_API_URL}/api/list/tasks/${taskId}/priority`,
                 { priority: newPriority },
                 {
                     headers: {
@@ -80,7 +80,7 @@ const TaskList = ({ listId }) => {
         try {
             const token = localStorage.getItem('token');
             await axios.delete(
-                `http://localhost:3001/api/list/tasks/${taskId}`,
+                `${process.env.REACT_APP_API_URL}/api/list/tasks/${taskId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

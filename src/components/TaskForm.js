@@ -11,7 +11,7 @@ const TaskForm = ({ onTaskAdded }) => {
         try {
             const token = localStorage.getItem('token');
             const response = await axios.post(
-                'http://localhost:3001/api/list/tasks',
+                `${process.env.REACT_APP_API_URL}/api/list/tasks`,
                 {
                     Description: description,
                     priority: priority,

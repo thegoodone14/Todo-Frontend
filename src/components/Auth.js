@@ -16,7 +16,7 @@ const Auth = () => {
         try {
             const endpoint = isLogin ? 'login' : 'register';
             const response = await axios.post(
-                `http://localhost:3001/api/auth/${endpoint}`,
+                `${process.env.REACT_APP_API_URL}/api/auth/${endpoint}`,
                 { email, password }
             );
 
