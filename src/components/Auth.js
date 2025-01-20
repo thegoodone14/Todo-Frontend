@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from './api'; // Changé pour utiliser l'instance api configurée
+import api from '../api'; // Changé pour utiliser l'instance api configurée
 
 const Auth = () => {
     const [email, setEmail] = useState('');

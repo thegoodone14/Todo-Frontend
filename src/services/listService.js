@@ -1,4 +1,4 @@
-import api from './api';
+import api from '../api';
 
 export const getLists = async () => {
     const response = await api.get('/api/lists');
