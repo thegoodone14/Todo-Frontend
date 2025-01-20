@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../api'; // Changé pour utiliser l'instance api configurée
+import api from '../api';
 
 const Auth = () => {
     const [email, setEmail] = useState('');
@@ -15,19 +15,28 @@ const Auth = () => {
         
         try {
             const endpoint = isLogin ? 'login' : 'register';
+            // Notons que nous n'avons plus besoin d'ajouter /api car c'est dans la baseURL
             const response = await api.post(
                 `/auth/${endpoint}`,
                 { email, password }
             );
 
             if (response.data.token) {
-                localStorage.setItem('token', response.data.token);
-                // Redirection vers la page des tâches
+                setAuthToken(response.data.token);
                 navigate('/tasks');
             }
         } catch (error) {
-            console.error('Erreur:', error);
-            setError(error.response?.data?.error || 'Une erreur est survenue');
+            console.error('Erreur de connexion:', error);
+            if (error.response) {
+                // L'erreur vient du serveur
+                setError(error.response.data?.error || 'Erreur du serveur');
+            } else if (error.request) {
+                // La requête a été faite mais pas de réponse
+                setError('Impossible de joindre le serveur');
+            } else {
+                // Erreur de configuration de la requête
+                setError('Erreur de configuration');
+            }
         }
     };
 

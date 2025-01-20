@@ -1,11 +1,24 @@
-// src/api.js (même contenu qu'avant)
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://todo-backend-73py.onrender.com/api',
+    baseURL: 'https://todo-backend-73py.onrender.com/api', // URL complète de l'API
     headers: {
         'Content-Type': 'application/json',
     },
+});
+
+// Ajouter un intercepteur pour logging
+api.interceptors.request.use(request => {
+    console.log('Starting Request:', request)
+    return request
+});
+
+api.interceptors.response.use(response => {
+    console.log('Response:', response)
+    return response
+}, error => {
+    console.error('Response Error:', error)
+    return Promise.reject(error)
 });
 
 export const setAuthToken = (token) => {
