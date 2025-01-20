@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://todo-backend-73py.onrender.com/api', // URL complète de l'API
+    baseURL: 'https://todo-backend-73py.onrender.com/api',
     headers: {
         'Content-Type': 'application/json',
     },
+    withCredentials: true,  // Important pour CORS avec credentials
 });
 
 // Ajouter un intercepteur pour logging
