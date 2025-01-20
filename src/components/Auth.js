@@ -14,14 +14,23 @@ const Auth = () => {
         setError('');
         
         const userData = {
-            Mail: email.trim(),  // Changé de 'email' à 'Mail'
-            Password: password   // Changé de 'password' à 'Password'
+            Mail: email.trim(),
+            Password: password
         };
         
-        console.log('Données envoyées:', userData);
-
+        console.log('Données à envoyer:', userData);
+        console.log('Type des données:', typeof userData);
+        console.log('JSON stringify:', JSON.stringify(userData));
+    
         try {
             const endpoint = isLogin ? 'login' : 'register';
+            console.log('URL complète:', `/auth/${endpoint}`);
+            console.log('Configuration de la requête:', {
+                method: 'POST',
+                headers: api.defaults.headers,
+                data: userData
+            });
+    
             const response = await api.post(
                 `/auth/${endpoint}`,
                 userData
