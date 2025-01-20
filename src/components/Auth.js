@@ -13,12 +13,18 @@ const Auth = () => {
         e.preventDefault();
         setError('');
         
+        const userData = {
+            Mail: email.trim(),  // Changé de 'email' à 'Mail'
+            Password: password   // Changé de 'password' à 'Password'
+        };
+        
+        console.log('Données envoyées:', userData);
+
         try {
             const endpoint = isLogin ? 'login' : 'register';
-            // Notons que nous n'avons plus besoin d'ajouter /api car c'est dans la baseURL
             const response = await api.post(
                 `/auth/${endpoint}`,
-                { email, password }
+                userData
             );
 
             if (response.data.token) {
@@ -28,13 +34,11 @@ const Auth = () => {
         } catch (error) {
             console.error('Erreur de connexion:', error);
             if (error.response) {
-                // L'erreur vient du serveur
-                setError(error.response.data?.error || 'Erreur du serveur');
+                console.error('Détails de l\'erreur:', error.response.data);
+                setError(error.response.data?.message || error.response.data?.error || 'Erreur du serveur');
             } else if (error.request) {
-                // La requête a été faite mais pas de réponse
                 setError('Impossible de joindre le serveur');
             } else {
-                // Erreur de configuration de la requête
                 setError('Erreur de configuration');
             }
         }
