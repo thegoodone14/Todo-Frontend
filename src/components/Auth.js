@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from './api'; // Changé pour utiliser l'instance api configurée
 
 const Auth = () => {
     const [email, setEmail] = useState('');
@@ -15,8 +15,8 @@ const Auth = () => {
         
         try {
             const endpoint = isLogin ? 'login' : 'register';
-            const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}/api/auth/${endpoint}`,
+            const response = await api.post(
+                `/auth/${endpoint}`,
                 { email, password }
             );
 
